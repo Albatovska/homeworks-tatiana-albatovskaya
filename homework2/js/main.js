@@ -64,7 +64,7 @@ console.log(car.needRepair);
 расчет. иначе если поля discount нет то вывести просто поле price в консоль.
  */
 let item = { name: 'Intel core i7', price: '100$',  discount: '15%'};
-if('discount' in item &&  item.discount !='undefined'){
+if('discount' in item){
     item.priceWithDiscount = parseInt(item.price) - parseInt(item.price)*parseInt(item.discount)/100;
     console.log('Цена ' + item.priceWithDiscount + '$');
 }else{
@@ -87,8 +87,8 @@ let product = {
 };
 let min = 10;
 let max = 20;
-
-if( parseInt(product.price) >= min && parseInt(product.price) <= max ){
+let productPrice = parseInt(product.price);
+if(productPrice >= min && product.Price <= max ){
     console.log(product.name);
 
 }else{
