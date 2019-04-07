@@ -151,10 +151,11 @@ let newString = input4.sort(function(prev, next){
     if (prev['index'] > next['index']) return 1;
     if (prev['index'] < next['index']) return -1;
 }).reduce(function(reduce, current){
-    return reduce + current['char'];
-   
-})          /* Ни как не могу понять почему  {char:"H",index:0} вставляется как объект б хотя при выводе индексов 
-массива элемент с индексом 0 первый в списке. */
+    
+   return reduce + current['char']
+    
+ 
+}, "")
 
 console.log(newString);
 
