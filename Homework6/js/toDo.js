@@ -73,9 +73,9 @@ addNewTodoToStorage('My title 4', 'My text 4');
 function deleteTodoFromStorage(id) {
     if (!id) return console.log('Передайте id задачи');
 
-    const taskIndex = storage.todos.findIndex((task) => task.id === id)
+    const taskIndex = storage.todos.findIndex((task) => task.id === id);
 
-    if (taskIndex === -1) return console.log('id несуществуе');
+    if (taskIndex === -1) return console.log('id несуществует');
 
     const removedTask = storage.todos.splice(taskIndex, 1);
 
@@ -83,16 +83,22 @@ function deleteTodoFromStorage(id) {
 }
 
 function editTaskStorage(id, title, text) {
+    if (!id) return console.log('Передайте id задачи');
+    if (!title) return console.log('Передайте заголовок задачи');
+    if (!text) return console.log('Передайте текст задачи');
 
   const taskIndex = storage.todos.findIndex((task) => task.id === id);
-  storage.todos[taskIndex].title = 'newTitle';
-  storage.todos[taskIndex].text = 'newText';
+
+  if ( taskIndex === -1) return console.log('Нет id задачи');
+  
+    storage.todos[taskIndex].title = newTitle;
+    storage.todos[taskIndex].text = newText;
    
 }
-editTaskStorage('someId', 'newTitle', 'newText')
+editTaskStorage('someId', 'newTitle', 'newText');
 
+console.log(storage.todos);
 
-console.log(storage.todos)
 // эти строки лучше выполнять в консоли браузера, когда вы сможете 
 // из массива storage.todos взять уникальный id тасочки 
 // editTaskStorage('some id', 'new title', 'new text')

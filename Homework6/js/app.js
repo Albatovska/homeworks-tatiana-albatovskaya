@@ -27,18 +27,20 @@ console.log(link);
 
 // 3. Найти элемент, который находится перед и после списка ul
 
-const ulsByQuerySelector = document.querySelector('ul');
+const ulByQuerySelector = document.querySelector('ul');
 
- console.log(ulsByQuerySelector.previousElementSibling);
- console.log(ulsByQuerySelector.nextElementSibling);
+
+ console.log(ulByQuerySelector.previousElementSibling);
+ console.log(ulByQuerySelector.nextElementSibling);
 
 // 4. Посчитать количество элементов li в списке
+const ulsByQuerySelector = document.querySelectorAll('ul');
 
-
-const lisByTagName = document.getElementsByTagName('li');
-let lisLength = lisByTagName.length;
-
-console.log(lisLength);
+  for (i = 0; i < ulsByQuerySelector.length; i++) {
+    const lisByQuerySelector = ulsByQuerySelector[i].children;
+    const lisLength = lisByQuerySelector.length;
+    console.log(lisLength);
+}
  
 // 5. В коде с занятия написать функцию по редактированию задачи. 
 // 6. Подумать и улучшить функцию generateId();
