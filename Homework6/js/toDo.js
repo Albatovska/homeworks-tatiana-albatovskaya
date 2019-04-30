@@ -43,7 +43,7 @@ function generateId() {
     let id = '';
 
     for (let char of words) {
-       // let index = Math.floor(Math.random() * words.length);
+       
         id += words[Math.floor(Math.random() * words.length)];
     }
 
@@ -51,6 +51,7 @@ function generateId() {
 }
 
 function addNewTodoToStorage(title, text) {
+
     if (!title) return console.log('Введите заголовок задачи');
     if (!text) return console.log('Введите текст задачи');
 
@@ -83,6 +84,7 @@ function deleteTodoFromStorage(id) {
 }
 
 function editTaskStorage(id, title, text) {
+    
     if (!id) return console.log('Передайте id задачи');
     if (!title) return console.log('Передайте заголовок задачи');
     if (!text) return console.log('Передайте текст задачи');
