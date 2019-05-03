@@ -93,8 +93,8 @@ function editTaskStorage(id, title, text) {
 
   if ( taskIndex === -1) return console.log('Нет id задачи');
   
-    storage.todos[taskIndex].title = newTitle;
-    storage.todos[taskIndex].text = newText;
+    storage.todos[taskIndex].title = title;
+    storage.todos[taskIndex].text = text;
    
 }
 editTaskStorage('someId', 'newTitle', 'newText');
