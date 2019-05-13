@@ -1,7 +1,8 @@
 // 1. По нажатию на кнопку "btn-msg"
 // должен появиться алерт с тем текстом который находится в атрибуте data - text у кнопки.
 const btn = document.querySelector('#btn-msg');
-const btnText = btn.dataset.text;
+const btnText = btn.textContent;
+
 btn.addEventListener('click', function() { alert(btnText) });
 
 
@@ -9,15 +10,27 @@ btn.addEventListener('click', function() { alert(btnText) });
 // когда указатель мыши покидает кнопку, она становится прежнего цвета.
 //Цвет менять можно через добавление класса.
 
-btn.onmouseover = function(event) {
-    let target = event.target;
-    target.style.background = 'red';
-};
+btn.addEventListener('mouseover', function(event) {
+    const target = event.target;
 
-btn.onmouseout = function(event) {
-    let target = event.target;
-    target.style.background = '';
-};
+    btn.classList.add('btn-red');
+});
+
+btn.addEventListener('mouseout', function(event) {
+    const target = event.target;
+
+    btn.classList.remove('btn-red');
+});
+
+// btn.onmouseover = function(event) {
+//     let target = event.target;
+//     target.style.background = 'red';
+// }
+
+// btn.onmouseout = function(event) {
+//     let target = event.target;
+//     target.style.background = '';
+// };
 
 // 3. При нажатии на любой узел документа показать в элементе с id = tag имя тега нажатого элемента.
 const tag = document.querySelector('#tag');
@@ -35,9 +48,9 @@ document.addEventListener('click', (event) => {
 
 
 const ul = document.querySelector('ul');
-const btnCreateLi = document.querySelector('#btn-generate');
+const btnGenerate = document.querySelector('#btn-generate');
 
-document.addEventListener('click', (event) => {
+btnGenerate.addEventListener('click', function() {
 
     const li = document.querySelectorAll('li');
     const liCreate = document.createElement('li');
@@ -47,4 +60,4 @@ document.addEventListener('click', (event) => {
 
     ul.appendChild(liCreate);
 
-})
+});

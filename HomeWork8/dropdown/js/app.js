@@ -6,19 +6,32 @@
 // а на тот который кликнули открываться.
 
 
-document.addEventListener('click', (event) => {
+const dropdownItems = document.querySelectorAll(".dropdown-item");
 
-    (!event.target.nextElementSibling) ? closeAllDropdowns(): (!event.target.nextElementSibling.className) ? closeAllDropdowns() :
-        (event.target.nextElementSibling.className === "dropdown-menu d-none") ?
-        (closeAllDropdowns(), openCurrentDropdown(event.target)) :
-        closeAllDropdowns();
+Array.prototype.forEach.call(dropdownItems, item =>
+    item.addEventListener("click", openCurrentDropdown)
+);
 
-    function closeAllDropdowns() {
-        const openedDropdowns = document.querySelectorAll('.d-block');
-        Array.prototype.forEach.call(openedDropdowns, (el) => el.classList.toggle('d-block'));
-    };
+function openCurrentDropdown(el) {
+    el.classList.add('d-block');
 
-    function openCurrentDropdown(el) {
-        el.nextElementSibling.classList.toggle('d-block');
-    }
-});
+};
+
+
+
+// document.addEventListener('click', (event) => {
+
+//     (!event.target.nextElementSibling) ? closeAllDropdowns(): (!event.target.nextElementSibling.className) ? closeAllDropdowns() :
+//         (event.target.nextElementSibling.className === "dropdown-menu d-none") ?
+//         (closeAllDropdowns(), openCurrentDropdown(event.target)) :
+//         closeAllDropdowns();
+
+//     function closeAllDropdowns() {
+//         const openedDropdowns = document.querySelectorAll('.d-block');
+//         Array.prototype.forEach.call(openedDropdowns, (el) => el.classList.toggle('d-block'));
+//     };
+
+//     function openCurrentDropdown(el) {
+//         el.nextElementSibling.classList.toggle('d-block');
+//     }
+// });
