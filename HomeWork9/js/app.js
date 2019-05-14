@@ -169,3 +169,63 @@ const numerator = {
 numerator.double().plusOne().plusOne().minusOne();
 
 console.log(numerator.value);
+
+// 1. Создать объект с розничной ценой и количеством продуктов.Этот
+// объект должен содержать метод для получения общей стоимости
+// всех товаров(цена * количество продуктов).
+const product = {
+    price: 15,
+    quantity: 3,
+    totalCost: function() { return this.price * this.quantity }
+}
+let getTotalCost = product.totalCost();
+console.log(getTotalCost);
+
+// 2. Создать объект из предыдущей задачи.Создать второй объект,
+//     который описывает количество деталей и цену за одну деталь.Для
+// второго объекта нужно узнать общую стоимость всех деталей, но
+// нельзя создавать новые функции и методы.Для этого“ позаимствуйте” метод 
+//из предыдущего объекта.
+
+const detail = {
+    price: 25,
+    quantity: 5
+};
+
+let getTotalCostDetail = product.totalCost.call(detail);
+
+console.log(getTotalCostDetail);
+
+
+// 3. Даны объект и функция:
+//     let sizes = { width: 5, height: 10 },
+//         getSquare = function() { return this.width * this.height };
+// Не изменяя функцию или объект, получить результат функции
+// getSquare для объекта sizes.
+
+let sizes = { width: 5, height: 10 },
+
+    getSquare = function() { return this.width * this.height };
+
+const squareForSize = getSquare.call(sizes);
+
+console.log(squareForSize);
+
+// 4.
+// let element = {
+//     height: 25,
+//     getHeight: function() { return this.height; }
+// };
+// let getElementHeight = element.getHeight;
+// getElementHeight(); // undefined
+// Измените функцию getElementHeight таким образом, чтобы можно
+// было вызвать getElementHeight() и получить 25.
+
+let elem = {
+    height: 25,
+    getHeight: function() { return this.height }
+};
+
+let getElementHeight = (el) => elem.getHeight.call(el);
+
+console.log(getElementHeight(elem));
