@@ -5,33 +5,23 @@
 // При клике на любой другой dropdown - item уже открытый dropdown - menu должен закрываться
 // а на тот который кликнули открываться.
 
-
 const dropdownItems = document.querySelectorAll(".dropdown-item");
 
 Array.prototype.forEach.call(dropdownItems, item =>
     item.addEventListener("click", openCurrentDropdown)
 );
 
-function openCurrentDropdown(el) {
-    el.classList.add('d-block');
+function openCurrentDropdown() {
+    const thisMenu = this.querySelector(".dropdown-menu");
+    const thisMenuClose = thisMenu.classList.contains("d-none");
+    const openedDropdowns = document.querySelectorAll('.dropdown-menu:not(.d-none)');
+
+    Array.prototype.forEach.call(openedDropdowns, el =>
+        el.classList.add('d-none'));
+
+    if (thisMenuClose) {
+        thisMenu.classList.remove("d-none");
+    }
+
 
 };
-
-
-
-// document.addEventListener('click', (event) => {
-
-//     (!event.target.nextElementSibling) ? closeAllDropdowns(): (!event.target.nextElementSibling.className) ? closeAllDropdowns() :
-//         (event.target.nextElementSibling.className === "dropdown-menu d-none") ?
-//         (closeAllDropdowns(), openCurrentDropdown(event.target)) :
-//         closeAllDropdowns();
-
-//     function closeAllDropdowns() {
-//         const openedDropdowns = document.querySelectorAll('.d-block');
-//         Array.prototype.forEach.call(openedDropdowns, (el) => el.classList.toggle('d-block'));
-//     };
-
-//     function openCurrentDropdown(el) {
-//         el.nextElementSibling.classList.toggle('d-block');
-//     }
-// });
