@@ -64,13 +64,15 @@ console.log(getInfo(organisation));
 // sum(1, 2, 3, 4); // 10
 // // sum(); // 0
 
+const sum = (...arg) => arg.length ? arg.reduce((prev, next) => prev + next) : 0;
+
 // const sum = (...arg) => {
 
 //     if (!arg.length) return 0;
 //     return arg.reduce((prev, next) => prev + next);
 // };
 
-const sum = (...arg) => arg.length ? arg.reduce((prev, next) => prev + next) : 0;
+
 
 console.log(sum(1, 2, 3, 4));
 console.log(sum());
