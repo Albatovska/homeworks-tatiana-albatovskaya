@@ -67,12 +67,9 @@ console.log(getInfo(organisation));
 const sum = (...arg) => arg.length ? arg.reduce((prev, next) => prev + next) : 0;
 
 // const sum = (...arg) => {
-
 //     if (!arg.length) return 0;
 //     return arg.reduce((prev, next) => prev + next);
 // };
-
-
 
 console.log(sum(1, 2, 3, 4));
 console.log(sum());
