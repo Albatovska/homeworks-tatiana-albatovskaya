@@ -1,7 +1,7 @@
 // 1. По нажатию на кнопку "btn-msg"
 // должен появиться алерт с тем текстом который находится в атрибуте data - text у кнопки.
 const btn = document.querySelector('#btn-msg');
-const btnText = btn.textContent;
+const btnText = btn.dataset.text;
 
 btn.addEventListener('click', function() { alert(btnText) });
 
@@ -10,14 +10,11 @@ btn.addEventListener('click', function() { alert(btnText) });
 // когда указатель мыши покидает кнопку, она становится прежнего цвета.
 //Цвет менять можно через добавление класса.
 
-btn.addEventListener('mouseover', function(event) {
-    const target = event.target;
-
+btn.addEventListener('mouseover', function() {
     btn.classList.add('btn-red');
 });
 
-btn.addEventListener('mouseout', function(event) {
-    const target = event.target;
+btn.addEventListener('mouseout', function() {
 
     btn.classList.remove('btn-red');
 });
