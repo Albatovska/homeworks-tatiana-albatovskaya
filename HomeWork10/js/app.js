@@ -7,10 +7,10 @@
 // minus()(); // 0
 // Подсказка, функция minus должна возвращать другую функцию.
 
-const minus = function differenceOfNumbers(firstArg) {
-    return function difference(secondArg) {
-        firstArg = firstArg || 0;
-        secondArg = secondArg || 0;
+const minus = function differenceOfNumbers(firstArg = 0) {
+    return function difference(secondArg = 0) {
+        firstArg = firstArg;
+        secondArg = secondArg;
         rez = firstArg - secondArg;
         return rez;
 
@@ -32,8 +32,8 @@ console.log(minus()());
 // multiply(3); // 12 (4 * 3)
 // multiply(10); // 120 (12 * 10)
 
-function multiplyMaker(firstArg) {
-    firstArg = firstArg || 1;
+function multiplyMaker(firstArg = 1) {
+    firstArg = firstArg;
     return function(secondArg) {
         let rez = firstArg * secondArg;
         firstArg = rez;
@@ -65,6 +65,7 @@ const stringModule = (function() {
 
     function setString(text) {
         string = text;
+        if (text === '') { string = '' };
         if (Number(text) === text) {
             string = String(text);
         }
@@ -95,7 +96,7 @@ const stringModule = (function() {
 
 })();
 
-stringModule.setString("gkcsyl");
+stringModule.setString('gkcsyl');
 
 console.log(stringModule.getString());
 console.log(stringModule.stringLength());
@@ -219,6 +220,20 @@ console.log(lexus.getAge());
 // Строки не должны быть доступны через this, только с помощью методов
 
 function Cipher(string) {
+    this.getString = function() {
+        return string;
+    };
+    this.chengeString = function() {
+        return string
+            .split('')
+            .reverse()
+            .join('')
+            .replace(/\s/g, '')
+
+
+    }
+};
+/* function Cipher(string) {
     this.string = string;
     this.getString = function() {
         return this.string;
@@ -230,7 +245,7 @@ function Cipher(string) {
             .join('')
             .replace(/\s/g, '')
     };
-}
+} */
 let cipherString = new Cipher('I am learning JavaScript');
 console.log(cipherString.getString());
 console.log(cipherString.chengeString());
