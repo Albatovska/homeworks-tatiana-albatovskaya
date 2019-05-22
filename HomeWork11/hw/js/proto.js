@@ -37,6 +37,7 @@ class Component1 {
     setText(text) { this.node.textContent = text; }
 }
 const comp = new Component1('span');
+comp.setText = "Hello";
 
 console.log(comp);
 //Component.prototype.setText = function(text) {
