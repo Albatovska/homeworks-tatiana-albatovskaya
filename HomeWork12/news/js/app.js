@@ -8,6 +8,8 @@
 const newsService = new NewsService();
 const newsUI = new NewsUI();
 const loaderUI = new LoaderUI('.news-wrap .row');
+const notificationUI = new NotificationUI('.news-wrap .row');
+
 
 // UI Elements
 const form = document.forms['newsControlForm'];
@@ -25,7 +27,7 @@ function onSelectChange() {
     const country = countrySelect.value;
     const category = categorySelect.value;
 
-    if (!country || !category) return console.log('Choose the category and country')
+    if (!country || !category) return console.log('Choose the category and country');
 
     loaderUI.setLoader();
     newsService.getNewsByCountryAndCatigory(({
@@ -40,13 +42,14 @@ function onSearchInput() {
     const search = searchInput.value;
     if (search.length < 3) return
     loaderUI.setLoader();
+
     newsService.getNewsBySearch(({
         articles
     }) => {
-        if (!articles) { return console.log('неа') }
         loaderUI.removeLoader()
         newsUI.addNewsToView(articles)
-        if (articles.length === 0) { NotificationUI.setNotification() }
+        if (!articles.length) { return notificationUI.setNotification() }
+        return
     }, search)
 
 }

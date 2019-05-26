@@ -17,7 +17,6 @@ class LoaderUI {
         this.container.innerHTML = '';
     };
 
-
     static getTemplate() {
         return `
         <div class="preloader-wrapper active">

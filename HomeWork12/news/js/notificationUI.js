@@ -6,28 +6,22 @@
 class NotificationUI {
     constructor(selector) {
         this.container = document.querySelector(selector)
-        console.log(container)
     };
 
     setNotification() {
         this.container.innerHTML = NotificationUI.getTemplate();
     };
-    /* 
-        removeNotification() {
-            this.container.innerHTML = ''
-        } */
 
     static getTemplate() {
         return `
-<div class="row">
-        <div class="col s12 m6">
-          <div class="no-find">
-                       <span class="card-no-find"> We are sorry! There are NO NEWS!</span>
-                      <div class="card-content">
-                         </div>
-          </div>
+       <div class='row'>
+            <div class="col s12 m5">
+               <div class="card-panel teal">
+                 <span class="white-text">We are sorry! There are NO NEWS!
+                 </span>
+              </div>
+            </div>
         </div>
-      </div>
 `
     };
 };
