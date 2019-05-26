@@ -32,9 +32,9 @@ console.log(minus()());
 // multiply(3); // 12 (4 * 3)
 // multiply(10); // 120 (12 * 10)
 
-function multiplyMaker(firstArg = 1) {
+function multiplyMaker(firstArg = 0) {
     firstArg = firstArg;
-    return function(secondArg) {
+    return function(secondArg = 0) {
         let rez = firstArg * secondArg;
         firstArg = rez;
         return rez;
@@ -63,13 +63,17 @@ console.log(multiply(10));
 const stringModule = (function() {
     let string = '';
 
-    function setString(text) {
-        string = text;
-        if (text === '') { string = '' };
-        if (Number(text) === text) {
-            string = String(text);
-        }
-    }
+    function setString(value) {
+        if (!value) {
+            return string;
+        } else {
+            if (typeof(value) !== 'string') {
+                return string = value.toString();
+            }
+
+            return string = value;
+        };
+    };
 
     function getString() {
         return string;
