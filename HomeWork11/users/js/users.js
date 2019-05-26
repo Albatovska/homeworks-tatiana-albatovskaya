@@ -8,19 +8,21 @@ class Users {
     setUsers(list) {
         list.forEach(user => {
             const pEl = document.createElement("p");
-            pEl.classList.add('new');
-            pEl.innerHTML = `<b>Name:</b> ${user.name}`;
+            pEl.innerHTML = `${user.name}`;
             this.element.appendChild(pEl);
             pEl.addEventListener("click", () => {
                 const openLists = document.querySelectorAll('.second');
                 Array.prototype.forEach.call(openLists, el => {
                     el.remove();
                 })
-                const newpEl = document.createElement("p");
-                newpEl.classList.add('second');
-                newpEl.innerHTML = `<b>Info:</b> ${JSON.stringify(user)}`;
-                pEl.appendChild(newpEl);
-
+                const pId = document.createElement("p");
+                pId.classList.add('second');
+                pId.innerHTML = `<b>id: </b> ${user.id}`;
+                pEl.appendChild(pId);
+                const pEm = document.createElement("p");
+                pEm.classList.add('second');
+                pEm.innerHTML = `<b>Email:</b> ${user.email}`;
+                pEl.appendChild(pEm);
             })
         });
         return this

@@ -20,7 +20,3 @@ class CustomHttp {
 
 };
 const http = new CustomHttp();
-
-http.get('https://jsonplaceholder.typicode.com/users', (response) => {
-    //  console.log('Users: ', response)
-});
