@@ -46,10 +46,11 @@ function onSearchInput() {
     newsService.getNewsBySearch(({
         articles
     }) => {
-        loaderUI.removeLoader()
-        newsUI.addNewsToView(articles)
-        if (!articles.length) { return notificationUI.setNotification() }
-        return
-    }, search)
-
-}
+        loaderUI.removeLoader();
+        if (articles.length !== 0) {
+            newsUI.addNewsToView(articles);
+        } else {
+            notificationUI.setNotification();
+        }
+    }, search);
+};
