@@ -9,11 +9,8 @@
 
 const minus = function differenceOfNumbers(firstArg = 0) {
     return function difference(secondArg = 0) {
-        firstArg = firstArg;
-        secondArg = secondArg;
         rez = firstArg - secondArg;
         return rez;
-
     }
 }
 
@@ -33,13 +30,9 @@ console.log(minus()());
 // multiply(10); // 120 (12 * 10)
 
 function multiplyMaker(firstArg = 0) {
-    firstArg = firstArg;
     return function(secondArg = 0) {
-        let rez = firstArg * secondArg;
-        firstArg = rez;
-        return rez;
+        return firstArg *= secondArg;
     }
-
 }
 const multiply = multiplyMaker(2);
 
@@ -70,7 +63,6 @@ const stringModule = (function() {
             if (typeof(value) !== 'string') {
                 return string = value.toString();
             }
-
             return string = value;
         };
     };
@@ -131,7 +123,6 @@ const calModule = (function() {
         if (typeof valSum !== "number") return console.log("Передано не число");
         result += valSum;
         return this;
-
     }
 
     function minus(valMinus) {
