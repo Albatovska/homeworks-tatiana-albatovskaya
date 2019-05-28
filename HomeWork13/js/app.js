@@ -8,7 +8,7 @@
 // // Ok!
 
 function promiseCreator(time, vol) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         setTimeout(() => {
             resolve(vol);
         }, time);
@@ -33,12 +33,6 @@ class Prom {
             this.resolve = resolve;
             this.reject = reject;
         });
-    };
-    resolve() {
-        return this.resolve;
-    };
-    reject() {
-        return this.reject;
     };
 };
 
