@@ -47,10 +47,12 @@ function onSearchInput() {
         articles
     }) => {
         loaderUI.removeLoader();
-        if (articles.length !== 0) {
-            newsUI.addNewsToView(articles);
-        } else {
-            notificationUI.setNotification();
-        }
+        // if (articles.length !== 0) {
+        //     newsUI.addNewsToView(articles);
+        // } else {
+        //     notificationUI.setNotification();
+        // }
+        articles.length ? newsUI.addNewsToView(articles) : notificationUI.setNotification()
+
     }, search);
 };
