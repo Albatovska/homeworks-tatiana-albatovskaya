@@ -18,17 +18,17 @@ function Planet(name) {
     this.name = name;
     this._getName = function() {
         return 'Planet name is ' + this.name;
-    }
-}
+    };
+};
 
 function PlanetWithSatellite(name, satelliteName) {
     Planet.call(this, name);
     this.satelliteName = satelliteName;
     this.getName = function() {
         return 'The satellite is ' + satelliteName;
-    }
+    };
     console.log(this._getName(this.name) + '. ' + this.getName(this.name))
-}
+};
 var earth = new PlanetWithSatellite('earth', 'moon');
 earth.getName();
 
@@ -48,28 +48,28 @@ earth.getName();
 class Build {
     constructor(floors) {
         this.floors = floors
-    }
+    };
     setFloors() { return floorscount = this.floors }
     getFloors() { return this.floors }
-}
+};
 class LiveHome extends Build {
     constructor(floors, flats) {
         super(floors);
         this.flats = flats;
-    }
+    };
     getFloors() {
         return 'Жилой дом. Этажей: ' + this.floors + ', ' + 'всего квартир: ' + super.getFloors() * this.flats;
-    }
-}
+    };
+};
 class TradeHome extends Build {
     constructor(floors, shops) {
         super(floors);
         this.shops = shops;
-    }
+    };
     getFloors() {
         return 'Торговый центр. Этажей: ' + this.floors + ', ' + 'всего магазинов: ' + super.getFloors() * this.shops;
-    }
-}
+    };
+};
 const livehome = new LiveHome(7, 3);
 const tradehome = new TradeHome(5, 4);
 console.log(livehome.getFloors());
