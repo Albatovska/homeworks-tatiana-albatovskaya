@@ -83,7 +83,6 @@ class VideoPlayerBasic {
         this.video.addEventListener("timeupdate", this.handleProgress);
         this.volumeRange.addEventListener("change", this.changeVolume);
         this.playbackRate.addEventListener("change", this.changePlaybackRate);
-        this.playbackRate.addEventListener("change", this.handlePlaybackRate);
         Array.prototype.forEach.call(this.skips, e =>
             e.addEventListener("click", evt => this.handleSkip(evt))
         );
@@ -123,9 +122,6 @@ class VideoPlayerBasic {
         const percent = (currentTime / duration) * 100;
         this.progress.style.flexBasis = `${percent}%`;
     };
-    handlePlaybackRate() {
-        this.video.playbackRate = this.playbackRate.value;
-    }
 
     handleSkip(e) {
         const value = +e.target.dataset.skip;
