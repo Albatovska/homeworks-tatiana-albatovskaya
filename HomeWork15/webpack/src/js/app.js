@@ -3,7 +3,7 @@ import './../css/style.css';
 // Libs
 import 'jquery';
 
-import 'lodash';
+import { debounce } from 'lodash';
 
 import {
     NewsService
@@ -30,7 +30,7 @@ const newsService = new NewsService();
 const newsUI = new NewsUI();
 const loaderUI = new LoaderUI();
 const notificationUI = new NotificationUI();
-const debounsMethod = _.debounce(onSearchChange, 500);
+const debounsMethod = debounce(onSearchChange, 500);
 
 // Handlers for events -- пишем функции-обработчики, которые нужны для addEventListener
 function onSelectChange() {
