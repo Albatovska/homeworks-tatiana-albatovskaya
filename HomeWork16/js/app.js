@@ -16,21 +16,27 @@
 
 function Planet(name) {
     this.name = name;
-    this._getName = function() {
+    this.getName = function() {
         return 'Planet name is ' + this.name;
     };
 };
 
 function PlanetWithSatellite(name, satelliteName) {
     Planet.call(this, name);
+    const previousGetName = this.getName;
     this.satelliteName = satelliteName;
     this.getName = function() {
-        return 'The satellite is ' + satelliteName;
+        return (
+            previousGetName.call(this) + '. ' + "The satellite is " +
+            this.satelliteName
+        );
     };
-    console.log(this._getName(this.name) + '. ' + this.getName(this.name))
 };
-var earth = new PlanetWithSatellite('earth', 'moon');
-earth.getName();
+PlanetWithSatellite.prototype = Object.create(Planet.prototype);
+PlanetWithSatellite.prototype.constructor = PlanetWithSatellite;
+
+const earth = new PlanetWithSatellite('earth', 'moon');
+console.log(earth.getName());
 
 // 2. Создайте класс“ Здание”(пусть у него будет имя, количество этажей, метод“ 
 //получить количество этажей” и метод“  установить количество этажей”).
@@ -46,34 +52,51 @@ earth.getName();
 // От каждого класса создать экземпляр(дом, торговый центр)
 
 class Build {
-    constructor(floors) {
-        this.floors = floors
-    };
-    setFloors() { return floorscount = this.floors }
-    getFloors() { return this.floors }
+    constructor(name, floors) {
+        this.name = name;
+        this.floors = floors;
+    }
+
+    get numberOfFloors() {
+        return this.floors;
+    }
+
+    set numberOfFloors(value) {
+        this.floors = value;
+    }
 };
 class LiveHome extends Build {
-    constructor(floors, flats) {
-        super(floors);
+    constructor(name, floors, flats) {
+        super(name, floors);
         this.flats = flats;
     };
     getFloors() {
-        return 'Жилой дом. Этажей: ' + this.floors + ', ' + 'всего квартир: ' + super.getFloors() * this.flats;
+        return {
+            Type: 'liveHome',
+            Name: this.name,
+            Floors: this.floors,
+            Flats: this.floors * this.flats
+        };
     };
 };
-class TradeHome extends Build {
-    constructor(floors, shops) {
-        super(floors);
+class ShoppingMall extends Build {
+    constructor(name, floors, shops) {
+        super(name, floors);
         this.shops = shops;
     };
     getFloors() {
-        return 'Торговый центр. Этажей: ' + this.floors + ', ' + 'всего магазинов: ' + super.getFloors() * this.shops;
+        return {
+            Type: 'Shopping center',
+            Name: this.name,
+            Floors: this.floors,
+            Stores: this.floors * this.shops
+        };
     };
 };
-const livehome = new LiveHome(7, 3);
-const tradehome = new TradeHome(5, 4);
+const livehome = new LiveHome('Faina Taun', 7, 3);
+const shoppingMall = new ShoppingMall('Lavina Mall', 5, 4);
 console.log(livehome.getFloors());
-console.log(tradehome.getFloors());
+console.log(shoppingMall.getFloors());
 
 // 3. Создать класс“ Мебель” с базовыми свойствами“ имя”, “цена” и методом“ получить информацию”
 // (метод должен вывести имя и цену).Метод должен быть объявлен с помощью прототипов
@@ -134,48 +157,53 @@ function User(name, date) {
     this.date = date;
 };
 User.prototype.getInfoUser = function() {
-    return this.name + ' ' + this.date;
+    return {
+        name: this.name,
+        dateRegistration: this.date,
+    }
 };
 
-function Admin(name, date) {
+function Admin(name, date, superAdmin) {
     User.call(this, name, date);
-    isSuperAdmin = true;
-    this.getIsAdmin = function() {
-        return isSuperAdmin ? 'admin' : 'guest';
-    };
+    this._isSuperAdmin = superAdmin;
 };
+
 Admin.prototype = Object.create(User.prototype);
 Admin.prototype.constructor = Admin;
+
 Admin.prototype.getInfoUser = function() {
-    return User.prototype.getInfoUser.call(this) + ' ' + this.getIsAdmin()
+    return {
+        name: this.name,
+        dateRegistration: this.date,
+        superAdmin: this._isSuperAdmin
+    }
 };
 
 function Guest(name, date) {
     User.call(this, name, date);
     this.createDate = function() {
-        this.endDateString = date;
-        let ddmmyyyy = this.endDateString.split("-");
-        this.endDate = new Date(parseInt(ddmmyyyy[2], 10),
-            parseInt(ddmmyyyy[1], 10) - 1,
-            parseInt(ddmmyyyy[0], 10));
+        this.startDate = new Date(this.date);
+        this.endDate = new Date(this.date);
         this.endDate.setDate(this.endDate.getDate() + 7);
-        this.endDate = this.endDate.toDateString();
-        return this.endDate;
-    };
+        this.localestr = this.endDate.toLocaleDateString();
 
-    validDate = this.createDate();
-    this.getValidDate = function() {
-        return validDate ? this.endDate : 'false';
+        return this.localestr;
+
     };
 
 };
 Guest.prototype = Object.create(User.prototype);
 Guest.prototype.constructor = Guest;
+
 Guest.prototype.getInfoUser = function() {
-    return User.prototype.getInfoUser.call(this) + ' ' + 'validDate: ' + this.endDate;
+    return {
+        name: this.name,
+        dateRegistration: this.date,
+        validDate: guest.createDate()
+    }
 };
 
-const admin = new Admin('Denis', '18-04-2019');
-const guest = new Guest('Sveta', '06-06-2019');
+const admin = new Admin('Denis', '18.04.2019', true);
+const guest = new Guest('Sveta', '06.06.2019');
 console.log(admin.getInfoUser());
 console.log(guest.getInfoUser());
