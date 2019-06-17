@@ -23,8 +23,8 @@ export class AuthService {
                 resolve(res)
             }).catch((err) => {
                 reject(err)
-            });
-        });
+            })
+        })
     }
 
     //public/auth/signup

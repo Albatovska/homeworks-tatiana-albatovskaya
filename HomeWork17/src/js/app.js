@@ -1,6 +1,6 @@
 import {
-    SignupComponent
-} from "./components/sign.component";
+    SingupComponent
+} from "./components/singup.component";
 import {
     LoginComponent
 } from './components/login.component';
@@ -14,20 +14,20 @@ import {
 const routes = {
     '/': new HomeComponent(),
     '/login': new LoginComponent(),
-    "/signup": new SignupComponent(),
+    '/singup': new SingupComponent(),
     '**': new NotFoundComponent()
 };
 
 const router = () => {
-    const url = location.hash.slice(1).toLowerCase();
-    const container = document.querySelector('app-container');
+    const url = location.hash.slice(1).toLowerCase()
+    const container = document.querySelector('app-container')
 
-    const component = routes[url] || routes['**'];
+    const component = routes[url] || routes['**']
 
-    container.innerHTML = component.render();
-    component.afterRender && component.afterRender();
+    container.innerHTML = component.render()
+    component.afterRender && component.afterRender()
 
 }
 
-window.addEventListener('load', router);
-window.addEventListener('hashchange', router);
+window.addEventListener('load', router)
+window.addEventListener('hashchange', router)
