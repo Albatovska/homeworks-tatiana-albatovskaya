@@ -1,10 +1,10 @@
-import { WinnersService, AuthService } from "./../services";
+import {
+    WinnersService
+} from "./../services";
 
 export class WinnersComponent {
     constructor() {
         this._winnersService = new WinnersService();
-        this._authService = new AuthService();
-
         this.render = this.render.bind(this);
         this.beforeRender = this.beforeRender.bind(this);
     }

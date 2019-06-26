@@ -15,8 +15,8 @@ export class WinnersService {
                     `${ENV.apiUrl}/public/winners?part=1&limit=15`
                 );
                 resolve(result);
-            } catch (e) {
-                reject(e);
+            } catch (event) {
+                reject(event);
             }
         });
     }

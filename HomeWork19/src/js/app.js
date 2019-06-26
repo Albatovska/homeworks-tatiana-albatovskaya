@@ -33,7 +33,8 @@ const routes = {
         guard: [authGuard, paymentGuard]
     },
     "/winners": {
-        component: new WinnersComponent()
+        component: new WinnersComponent(),
+        guard: [authGuard]
     },
     "/users/:id": {
         component: new UserComponent(),
