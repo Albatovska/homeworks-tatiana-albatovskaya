@@ -32,8 +32,6 @@ function PlanetWithSatellite(name, satelliteName) {
         );
     };
 };
-PlanetWithSatellite.prototype = Object.create(Planet.prototype);
-PlanetWithSatellite.prototype.constructor = PlanetWithSatellite;
 
 const earth = new PlanetWithSatellite('earth', 'moon');
 console.log(earth.getName());
