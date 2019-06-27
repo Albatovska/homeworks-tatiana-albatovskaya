@@ -10,61 +10,144 @@ export class SingupComponent {
         this._authService = new AuthService();
         this._routing = new Routing();
 
-        this.afterRender = this.afterRender.bind(this)
+        this.afterRender = this.afterRender.bind(this);
     }
-
     render() {
         return `
-        <div class="auth-wrap d-flex mt-5">
-            <div class="auth-form col col-6 mx-auto my-auto">
-                <h3>Singup to Social.</h3>
-                <p class="text-secondary">Enter your information, e-mail address & password to singup to Social wetwork.</p>
-                <form name="singupForm" novalidate>
-                    <div class="form-group">
-                        <input type="nickname" class="form-control form-control-sm" id="nickname" placeholder="Your nickname" required >
-                        <input type="first_name" class="form-control form-control-sm" id="first_name" placeholder="Your first name" required >
-                        <input type="last_name" class="form-control form-control-sm" id="last_name" placeholder="Your last name" required >
-                        <input type="phone" class="form-control form-control-sm" id="phone" placeholder="Your phone" required >
-                        <input type="gender_orientation" class="form-control form-control-sm" id="gender_orientation" placeholder="Your gender orientation" required >
-                        <input type="city" class="form-control form-control-sm" id="city" placeholder="Your city" required >
-                        <input type="country" class="form-control form-control-sm" id="country" placeholder="Your country" required >
-                        <input type="date_of_birth_day" class="form-control form-control-sm" id="date_of_birth_day" placeholder="Your date of birth day" required >
-                        <input type="date_of_birth_month" class="form-control form-control-sm" id="date_of_birth_month" placeholder="Your date of birth month" required >
-                        <input type="date_of_birth_year" class="form-control form-control-sm" id="date_of_birth_year" placeholder="Your date of birth year" required >
-                        
-                        <input type="email" class="form-control form-control-sm" id="email" placeholder="name@example.com" required data-pattern="^\S+@[a-z]+\.[a-z]+$">
-                        <input type="password" class="form-control form-control-sm mt-3" id="password" placeholder="password" required data-pattern="\S+">
-                        <div class="d-flex mt-5">
-                            <button type="submit" class="btn btn-primary btn-sm">Singup</button>
-                        </div>
-                    </div>
-                </form>
+        <form name="signupForm" style="padding: 30px">
+            <div class="form-group row">
+              <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+              </div>
             </div>
-            <div class="auth-bg col col-6"></div>
-        </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" required data-pattern="\S+">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputNickname" class="col-sm-2 col-form-label">Nickname</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputNickname" placeholder="Nickname">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPhone" class="col-sm-2 col-form-label">Phone</label>
+              <div class="col-sm-10">
+                <input type="tel" class="form-control" id="inputPhone" placeholder="Phone">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="gender-orientation">Gender Orientation</label>
+                <select class="form-control" id="gender-orientation">
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+            </div>
+            <div class="form-group row">
+              <label for="inputCity" class="col-sm-2 col-form-label">City</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputCity" placeholder="City">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputCountry" class="col-sm-2 col-form-label">Country</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputCountry" placeholder="Country">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputDateBirthDay" class="col-sm-2 col-form-label">Day</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputDateBirthDay" placeholder="Day">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputDateBirthMonth" class="col-sm-2 col-form-label">Month</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputDateBirthMonth" placeholder="Month">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputDateBirthYear" class="col-sm-2 col-form-label">Year</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputDateBirthYear" placeholder="Year">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+              </div>
+            </div>
+          </form>
         `;
     }
 
     afterRender() {
-        document.forms['singupForm'].addEventListener('submit', (e) => {
+        document.forms["signupForm"].addEventListener("submit", e => {
             e.preventDefault();
 
-            const values = Array.prototype.reduce.call(e.target.querySelectorAll('input'), (init, input) => ({
-                ...init,
-                [input.id]: input.value
-            }), {})
+            const email = e.target.elements["inputEmail"].value;
+            const password = e.target.elements["inputPassword"].value;
+            const nickname = e.target.elements["inputNickname"].value;
+            const first_name = e.target.elements["inputFirstName"].value;
+            const last_name = e.target.elements["inputLastName"].value;
+            const phone = e.target.elements["inputPhone"].value;
+            const gender_orientation = e.target.elements["gender-orientation"].value;
+            const city = e.target.elements["inputCity"].value;
+            const country = e.target.elements["inputCountry"].value;
+            const date_of_birth_day = e.target.elements["inputDateBirthDay"].value;
+            const date_of_birth_month = e.target.elements["inputDateBirthMonth"].value;
+            const date_of_birth_year = e.target.elements["inputDateBirthYear"].value;
 
-            if (Object.keys(values).some(v => !values[v])) return;
-
-            this._authService.singup({
-                    ...values
+            if (!email ||
+                !password ||
+                !nickname ||
+                !first_name ||
+                !last_name ||
+                !phone ||
+                !gender_orientation ||
+                !city ||
+                !country ||
+                !date_of_birth_day ||
+                !date_of_birth_month ||
+                !date_of_birth_year
+            )
+                return;
+            let userData = {
+                email,
+                password,
+                nickname,
+                first_name,
+                last_name,
+                phone,
+                gender_orientation,
+                city,
+                country,
+                date_of_birth_day,
+                date_of_birth_month,
+                date_of_birth_year
+            }
+            this._authService.singup(userData)
+                .then(res => {
+                    console.log('Login ok -> ', res.message);
+                    this._routing.navigate('/login');
                 })
-                .then(() => {
-                    this._routing.navigate('/login')
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+                .catch(err => console.log('Signup error -> ', err));
         });
     }
 }

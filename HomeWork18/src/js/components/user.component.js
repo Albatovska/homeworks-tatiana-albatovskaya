@@ -14,12 +14,12 @@ export class UserComponent {
         this._authService = new AuthService();
         this._userService = new UserService();
 
-        this.beforeRender = this.beforeRender.bind(this)
-        this.render = this.render.bind(this)
-        this.style = this.style.bind(this)
+        this.beforeRender = this.beforeRender.bind(this);
+        this.render = this.render.bind(this);
+        this.style = this.style.bind(this);
 
-        this._authUserId = this._authService.userId
-        this._user = {}
+        this._authUserId = this._authService.userId;
+        this._user = {};
     }
 
     async beforeRender() {
